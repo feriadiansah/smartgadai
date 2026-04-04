@@ -22,7 +22,7 @@ class DashboardController extends Controller
         // 4. Ambil SEMUA data pinjaman untuk tabel utama (seperti biasa)
         $dataPinjaman = Pinjaman::with('nasabah')->orderBy('tgl_jatuh_tempo', 'asc')->get();
 
-        // 5. INI YANG BARU: Ambil data KHUSUS untuk antrean WA Massal
+        // 5. Ambil data KHUSUS untuk antrean WA Massal
         $dataReminder = Pinjaman::with('nasabah')
             ->whereDate('tgl_jatuh_tempo', '<=', $batasWaktu) // Syarat 1: Jatuh tempo hari ini/lewat/besok
             ->whereIn('status_barang', ['Aktif', 'Menunggu']) // Syarat 2: Belum lunas
@@ -31,10 +31,52 @@ class DashboardController extends Controller
             })
             ->get();
 
+        // 6. --- REFACTOR: Rakit Link WA di Controller ---
+        // Kita tempelkan variabel baru bernama 'link_wa' ke data yang akan dikirim ke View
+        $dataPinjaman->each(function($item) {
+            $item->link_wa = $this->generateWaLink($item);
+        });
+
+        $dataReminder->each(function($item) {
+            $item->link_wa = $this->generateWaLink($item);
+        });
+
         // Lempar semua variabel ke tampilan (view)
         return view('dashboard', compact('totalSisa', 'hariIni', 'dataPinjaman', 'dataReminder'));
     }
+
+    // FUNGSI PRIVATE: Khusus untuk merakit format pesan WA Pegadaian
+    private function generateWaLink($pinjaman)
+    {
+        $noHp = $pinjaman->nasabah->nomor_hp;
+
+        // Kalau tidak ada nomor HP, kembalikan tanda '#'
+        if (!$noHp) return "#";
+
+        // Bersihkan Nomor HP
+        $noHp = preg_replace('/[^0-9]/', '', $noHp);
+        if(substr($noHp, 0, 1) == '0') {
+            $noHp = '62' . substr($noHp, 1);
+        }
+
+        // Format Pesan Pegadaian
+        $pesan = "Yth Bpk/Ibu " . strtoupper($pinjaman->nasabah->nama_lengkap) . "\n\n";
+        $pesan .= "Angsuran Kredit Produk " . $pinjaman->produk . "\n";
+        $pesan .= "No Kontrak; " . $pinjaman->no_kredit . "\n";
+        $pesan .= "Akan Jatuh Tempo Tanggal: " . Carbon::parse($pinjaman->tgl_jatuh_tempo)->translatedFormat('d M Y') . "\n\n";
+        $pesan .= "Abaikan pesan ini jika sudah melakukan pembayaran\n\n";
+        $pesan .= "Transaksi Semakin Mudah; https://tring.onelink.me/rIEN/infoPegadaian\n\n";
+        $pesan .= "Info\nPEGADAIAN KEBAYORAN BARU";
+
+        return "https://web.whatsapp.com/send?phone=" . $noHp . "&text=" . urlencode($pesan);
+    }
 }
+
+
+
+
+
+// 1
 // < -- ? php
 
 // namespace App\Http\Controllers;
