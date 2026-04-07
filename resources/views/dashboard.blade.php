@@ -11,9 +11,11 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <p class="text-sm font-semibold text-slate-500 mb-1">Total Sisa Pinjaman (Aktif)</p>
-                        <h3 class="text-2xl font-bold text-[#1b2559]">Rp {{ number_format($totalSisa, 0, ',', '.') }}</h3>
+                        <h3 class="text-2xl font-bold text-[#1b2559]">Rp {{ number_format($totalSisa, 0, ',', '.') }}
+                        </h3>
                     </div>
-                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 text-xl">
+                    <div
+                        class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 text-xl">
                         <i class="fas fa-chart-pie"></i>
                     </div>
                 </div>
@@ -34,10 +36,12 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <p class="text-sm font-semibold text-slate-500 mb-1">Data Excel Terakhir Diperbarui</p>
-                        <h3 class="text-lg font-bold text-[#1b2559] mt-1">{{ \Carbon\Carbon::now()->format('d M Y') }}</h3>
+                        <h3 class="text-lg font-bold text-[#1b2559] mt-1">{{ \Carbon\Carbon::now()->format('d M Y') }}
+                        </h3>
                         <p class="text-xs text-slate-400 mt-1">{{ \Carbon\Carbon::now()->format('H:i') }} WIB</p>
                     </div>
-                    <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 text-xl cursor-pointer hover:bg-emerald-100 transition-colors">
+                    <div
+                        class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 text-xl cursor-pointer hover:bg-emerald-100 transition-colors">
                         <i class="fas fa-sync-alt"></i>
                     </div>
                 </div>
@@ -46,7 +50,8 @@
 
         <!-- AREA TABEL -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-            <div class="p-6 border-b border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-4 bg-white">
+            <div
+                class="p-6 border-b border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-4 bg-white">
                 <div class="flex items-center gap-3">
                     <h2 class="text-lg font-bold text-[#1b2559]">Daftar Nasabah Jatuh Tempo</h2>
                     <span class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full">Hari Ini</span>
@@ -55,15 +60,18 @@
                 <div class="flex items-center gap-3 w-full lg:w-auto">
                     <div class="relative flex-1 lg:w-64">
                         <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" placeholder="Cari nama..." class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl text-sm outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all bg-slate-50">
+                        <input type="text" placeholder="Cari nama..."
+                            class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl text-sm outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all bg-slate-50">
                     </div>
-                    <select class="border border-slate-200 rounded-xl px-4 py-2 text-sm bg-slate-50 outline-none focus:border-indigo-500 text-slate-700 font-semibold cursor-pointer">
+                    <select
+                        class="border border-slate-200 rounded-xl px-4 py-2 text-sm bg-slate-50 outline-none focus:border-indigo-500 text-slate-700 font-semibold cursor-pointer">
                         <option>Semua Kategori</option>
                         <option>📘 Angsuran Rutin</option>
                         <option>📕 Kredit Bermasalah</option>
                     </select>
                     <!-- Tombol Pemicu Modal Antrean WA -->
-                    <button @click="showModalWA = true" class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-xl font-semibold text-sm flex items-center gap-2 transition-colors shadow-sm">
+                    <button @click="showModalWA = true"
+                        class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-xl font-semibold text-sm flex items-center gap-2 transition-colors shadow-sm">
                         <i class="fab fa-whatsapp text-lg"></i> Kirim WA Massal ({{ count($dataReminder) }})
                     </button>
                 </div>
@@ -87,7 +95,9 @@
                                 <td class="px-6 py-4">
                                     <p class="font-bold text-[#1b2559]">{{ $pinjaman->nasabah->nama_lengkap }}</p>
                                     <div class="flex items-center gap-2 mt-1">
-                                        <span class="text-[10px] text-slate-500 font-mono bg-slate-100 px-1.5 py-0.5 rounded">CIF: {{ $pinjaman->nasabah->cif }}</span>
+                                        <span
+                                            class="text-[10px] text-slate-500 font-mono bg-slate-100 px-1.5 py-0.5 rounded">CIF:
+                                            {{ $pinjaman->nasabah->cif }}</span>
 
                                         <!-- TOMBOL WA SATUAN (SUPER BERSIH KARENA LOGIKA DI CONTROLLER) -->
                                         @if ($pinjaman->nasabah->nomor_hp)
@@ -96,29 +106,36 @@
                                                 <i class="fab fa-whatsapp text-sm"></i> Kirim Pesan
                                             </a>
                                         @else
-                                            <span class="text-xs text-red-400 font-medium inline-flex items-center gap-1 bg-red-50 border border-red-100 px-2 py-0.5 rounded-md">
+                                            <span
+                                                class="text-xs text-red-400 font-medium inline-flex items-center gap-1 bg-red-50 border border-red-100 px-2 py-0.5 rounded-md">
                                                 <i class="fas fa-phone-slash"></i> No HP Kosong
                                             </span>
                                         @endif
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 font-mono text-slate-600 font-medium">{{ $pinjaman->no_kredit }}</td>
+                                <td class="px-6 py-4 font-mono text-slate-600 font-medium">{{ $pinjaman->no_angsuran }}
+                                </td>
 
                                 <td class="px-6 py-4">
                                     @if ($pinjaman->kategori_produk == 'Lelang')
-                                        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-1 inline-block"><i class="fas fa-gavel mr-1"></i> Lelang</span>
+                                        <span
+                                            class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-1 inline-block"><i
+                                                class="fas fa-gavel mr-1"></i> Lelang</span>
                                     @else
-                                        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-1 inline-block">{{ $pinjaman->kategori_produk }}</span>
+                                        <span
+                                            class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-1 inline-block">{{ $pinjaman->kategori_produk }}</span>
                                     @endif
                                     <p class="text-xs text-slate-500 font-medium mt-1">{{ $pinjaman->produk }}</p>
                                 </td>
 
-                                <td class="px-6 py-4 font-bold {{ $pinjaman->tgl_jatuh_tempo <= now()->format('Y-m-d') ? 'text-red-600' : 'text-slate-700' }}">
+                                <td
+                                    class="px-6 py-4 font-bold {{ $pinjaman->tgl_jatuh_tempo <= now()->format('Y-m-d') ? 'text-red-600' : 'text-slate-700' }}">
                                     {{ \Carbon\Carbon::parse($pinjaman->tgl_jatuh_tempo)->format('d M Y') }}
                                 </td>
 
-                                <td class="px-6 py-4 text-right font-bold text-[#1b2559]">Rp {{ number_format($pinjaman->sisa_uang_pinjaman, 0, ',', '.') }}</td>
+                                <td class="px-6 py-4 text-right font-bold text-[#1b2559]">Rp
+                                    {{ number_format($pinjaman->sisa_uang_pinjaman, 0, ',', '.') }}</td>
 
                                 <!-- Kolom 6: STATUS (Kodingan Smart Dropdown) -->
                                 <td class="px-6 py-4 text-center">
@@ -138,10 +155,19 @@
                                         <div x-show="open" @click.away="open = false" style="display: none;"
                                             class="absolute right-0 w-36 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 overflow-hidden {{ $loop->remaining <= 1 && $loop->count > 2 ? 'bottom-full mb-2 origin-bottom-right' : 'mt-2 origin-top-right' }}">
                                             <div class="py-1">
-                                                <button @click="updateStatusDB({{ $pinjaman->id }}, 'Menunggu'); currentStatus = 'Menunggu'; open = false" class="block w-full text-left px-4 py-2 text-xs text-amber-700 hover:bg-amber-50 font-semibold transition-colors">Menunggu</button>
-                                                <button @click="updateStatusDB({{ $pinjaman->id }}, 'Diperpanjang'); currentStatus = 'Diperpanjang'; open = false" class="block w-full text-left px-4 py-2 text-xs text-blue-700 hover:bg-blue-50 font-semibold transition-colors">Diperpanjang</button>
-                                                <button @click="updateStatusDB({{ $pinjaman->id }}, 'Lunas'); currentStatus = 'Lunas'; open = false" class="block w-full text-left px-4 py-2 text-xs text-emerald-700 hover:bg-emerald-50 font-semibold transition-colors">Lunas</button>
-                                                <button @click="updateStatusDB({{ $pinjaman->id }}, 'Lelang'); currentStatus = 'Lelang'; open = false" class="block w-full text-left px-4 py-2 text-xs text-red-700 hover:bg-red-50 font-semibold transition-colors">Dilelang / Hangus</button>
+                                                <button
+                                                    @click="updateStatusDB({{ $pinjaman->id }}, 'Menunggu'); currentStatus = 'Menunggu'; open = false"
+                                                    class="block w-full text-left px-4 py-2 text-xs text-amber-700 hover:bg-amber-50 font-semibold transition-colors">Menunggu</button>
+                                                <button
+                                                    @click="updateStatusDB({{ $pinjaman->id }}, 'Diperpanjang'); currentStatus = 'Diperpanjang'; open = false"
+                                                    class="block w-full text-left px-4 py-2 text-xs text-blue-700 hover:bg-blue-50 font-semibold transition-colors">Diperpanjang</button>
+                                                <button
+                                                    @click="updateStatusDB({{ $pinjaman->id }}, 'Lunas'); currentStatus = 'Lunas'; open = false"
+                                                    class="block w-full text-left px-4 py-2 text-xs text-emerald-700 hover:bg-emerald-50 font-semibold transition-colors">Lunas</button>
+                                                <button
+                                                    @click="updateStatusDB({{ $pinjaman->id }}, 'Lelang'); currentStatus = 'Lelang'; open = false"
+                                                    class="block w-full text-left px-4 py-2 text-xs text-red-700 hover:bg-red-50 font-semibold transition-colors">Dilelang
+                                                    / Hangus</button>
                                             </div>
                                         </div>
                                     </div>
@@ -149,7 +175,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-8 text-center text-slate-500">Belum ada data pinjaman. Silakan upload Excel terlebih dahulu.</td>
+                                <td colspan="6" class="px-6 py-8 text-center text-slate-500">Belum ada data pinjaman.
+                                    Silakan upload Excel terlebih dahulu.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -160,20 +187,30 @@
         <!-- ========================================== -->
         <!-- MODAL POPUP ANTREAN WA MASSAL -->
         <!-- ========================================== -->
-        <div x-show="showModalWA" style="display: none;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div x-show="showModalWA" style="display: none;" class="fixed inset-0 z-50 overflow-y-auto"
+            aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div x-show="showModalWA" x-transition.opacity class="fixed inset-0 bg-slate-900 bg-opacity-75 transition-opacity" @click="showModalWA = false"></div>
+                <div x-show="showModalWA" x-transition.opacity
+                    class="fixed inset-0 bg-slate-900 bg-opacity-75 transition-opacity" @click="showModalWA = false">
+                </div>
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-                <div x-show="showModalWA" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                <div x-show="showModalWA" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
 
                     <!-- Header Modal -->
                     <div class="bg-green-500 px-6 py-4 flex justify-between items-center">
                         <h3 class="text-lg leading-6 font-bold text-white flex items-center gap-2" id="modal-title">
-                            <i class="fab fa-whatsapp text-2xl"></i> Antrean Pengiriman WA ({{ count($dataReminder) }} Orang)
+                            <i class="fab fa-whatsapp text-2xl"></i> Antrean Pengiriman WA ({{ count($dataReminder) }}
+                            Orang)
                         </h3>
-                        <button @click="showModalWA = false" class="text-white hover:text-green-200 focus:outline-none">
+                        <button @click="showModalWA = false"
+                            class="text-white hover:text-green-200 focus:outline-none">
                             <i class="fas fa-times text-xl"></i>
                         </button>
                     </div>
@@ -181,22 +218,31 @@
                     <!-- Isi Modal (Daftar Antrean) -->
                     <div class="bg-slate-50 px-6 py-4 max-h-[60vh] overflow-y-auto">
                         @if (count($dataReminder) > 0)
-                            <p class="text-sm text-slate-600 mb-4">Silakan klik tombol <b>"Kirim"</b> satu per satu dari atas ke bawah untuk membuka WhatsApp Web secara otomatis.</p>
+                            <p class="text-sm text-slate-600 mb-4">Silakan klik tombol <b>"Kirim"</b> satu per satu
+                                dari atas ke bawah untuk membuka WhatsApp Web secara otomatis.</p>
 
                             <div class="space-y-3">
                                 @foreach ($dataReminder as $index => $reminder)
                                     <!-- Kartu Antrean per Orang -->
-                                    <div class="bg-white border border-slate-200 p-4 rounded-xl flex justify-between items-center shadow-sm hover:border-green-300 transition-colors" x-data="{ dikirim: false }">
+                                    <div class="bg-white border border-slate-200 p-4 rounded-xl flex justify-between items-center shadow-sm hover:border-green-300 transition-colors"
+                                        x-data="{ dikirim: false }">
                                         <div>
-                                            <p class="font-bold text-[#1b2559]">{{ $index + 1 }}. {{ $reminder->nasabah->nama_lengkap }}</p>
-                                            <p class="text-xs text-slate-500">Jatuh Tempo: <span class="text-red-500 font-bold">{{ \Carbon\Carbon::parse($reminder->tgl_jatuh_tempo)->format('d M Y') }}</span> | Tagihan: Rp {{ number_format($reminder->sisa_uang_pinjaman, 0, ',', '.') }}</p>
+                                            <p class="font-bold text-[#1b2559]">{{ $index + 1 }}.
+                                                {{ $reminder->nasabah->nama_lengkap }}</p>
+                                            <p class="text-xs text-slate-500">Jatuh Tempo: <span
+                                                    class="text-red-500 font-bold">{{ \Carbon\Carbon::parse($reminder->tgl_jatuh_tempo)->format('d M Y') }}</span>
+                                                | Tagihan: Rp
+                                                {{ number_format($reminder->sisa_uang_pinjaman, 0, ',', '.') }}</p>
                                         </div>
                                         <div class="flex items-center gap-3">
                                             <!-- Indikator kalau sudah diklik -->
-                                            <span x-show="dikirim" class="text-xs font-bold text-green-600" style="display: none;"><i class="fas fa-check-circle"></i> Selesai</span>
+                                            <span x-show="dikirim" class="text-xs font-bold text-green-600"
+                                                style="display: none;"><i class="fas fa-check-circle"></i>
+                                                Selesai</span>
 
                                             <!-- TOMBOL WA MASSAL (SUPER BERSIH) -->
-                                            <a href="{{ $reminder->link_wa }}" target="_blank" @click="dikirim = true"
+                                            <a href="{{ $reminder->link_wa }}" target="_blank"
+                                                @click="dikirim = true"
                                                 class="bg-green-100 text-green-700 hover:bg-green-500 hover:text-white border border-green-200 px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm flex items-center gap-2">
                                                 <i class="fab fa-whatsapp"></i> Kirim
                                             </a>
@@ -208,14 +254,16 @@
                             <div class="text-center py-10">
                                 <i class="fas fa-check-circle text-5xl text-emerald-400 mb-3"></i>
                                 <h4 class="text-lg font-bold text-slate-700">Tugas Selesai!</h4>
-                                <p class="text-sm text-slate-500 mt-1">Tidak ada nasabah yang perlu di-reminder hari ini.</p>
+                                <p class="text-sm text-slate-500 mt-1">Tidak ada nasabah yang perlu di-reminder hari
+                                    ini.</p>
                             </div>
                         @endif
                     </div>
 
                     <!-- Footer Modal -->
                     <div class="bg-white px-6 py-4 border-t border-slate-200 flex justify-end">
-                        <button @click="showModalWA = false" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2 px-6 rounded-lg transition-colors">Tutup</button>
+                        <button @click="showModalWA = false"
+                            class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2 px-6 rounded-lg transition-colors">Tutup</button>
                     </div>
                 </div>
             </div>
@@ -232,11 +280,15 @@
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': csrfToken
                     },
-                    body: JSON.stringify({ status: statusBaru })
+                    body: JSON.stringify({
+                        status: statusBaru
+                    })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) { console.log(data.message); }
+                    if (data.success) {
+                        console.log(data.message);
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);

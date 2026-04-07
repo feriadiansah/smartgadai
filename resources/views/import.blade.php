@@ -7,10 +7,16 @@
     <div class="max-w-4xl mx-auto py-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-2xl border border-slate-100 p-8">
 
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-[#1b2559]">Upload File Excel</h2>
-                <p class="text-slate-500 text-sm mt-1">Pastikan file Excel berasal dari sistem BUMN dengan format kolom
-                    yang sudah ditentukan.</p>
+           <div class="mb-8 flex justify-between items-start">
+                <div>
+                    <h2 class="text-2xl font-bold text-[#1b2559]">Upload File Excel</h2>
+                    <p class="text-slate-500 text-sm mt-1">Gunakan template resmi agar data nomor kontrak tidak rusak.</p>
+                </div>
+
+                <a href="{{ asset('templates/Template_Import_Gadai.xlsx') }}" download
+                   class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold py-2 px-4 rounded-xl text-sm transition-colors flex items-center gap-2">
+                    <i class="fas fa-download"></i> Download Template Excel
+                </a>
             </div>
 
             @if ($errors->any())

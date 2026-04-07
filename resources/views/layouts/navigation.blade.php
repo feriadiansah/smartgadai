@@ -1,12 +1,16 @@
 <nav x-data="{ open: false }"
-    class="w-72 bg-[#0b1437] min-h-screen text-white flex flex-col shadow-xl sticky top-0 border-r border-gray-800">
+    class="w-72 bg-emerald-700 min-h-screen text-white flex flex-col shadow-xl sticky top-0 border-r border-emerald-800">
     <div class="px-6 py-8 flex-1">
-        <div class="flex items-center gap-3 mb-10 px-2">
-            <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                <div class="p-2 bg-indigo-500 rounded-xl">
-                    <x-application-logo class="w-8 h-8 fill-current text-white" />
+        <div class="flex flex-col items-center mb-10 px-2 gap-4">
+            <a href="{{ route('dashboard') }}" class="flex flex-col items-center text-center gap-3">
+
+                <div class="p-1.5 bg-white rounded-xl shadow-sm">
+                    <img src="{{ asset('logo-pegadaian.png') }}" alt="Logo Pegadaian" class="w-16 h-16 object-contain" />
                 </div>
-                <span class="text-xl font-bold tracking-tight uppercase text-white">Dashboard</span>
+
+                <span class="text-2xl font-bold tracking-tight uppercase text-white">PEGADAIAN</span>
+
+                <span class="text-sm text-gray-400 opacity-70">Cabang Kebayoran Baru</span>
             </a>
         </div>
 
