@@ -7,18 +7,31 @@
     <div class="max-w-4xl mx-auto py-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-2xl border border-slate-100 p-8">
 
-           <div class="mb-8 flex justify-between items-start">
-                <div>
+            <div class="flex flex-col gap-4 mb-6">
+                {{-- <div>
                     <h2 class="text-2xl font-bold text-[#1b2559]">Upload File Excel</h2>
-                    <p class="text-slate-500 text-sm mt-1">Gunakan template resmi agar data nomor kontrak tidak rusak.</p>
+                    <p class="text-slate-500 text-sm mt-1">Gunakan template resmi agar valid untuk upload.
+                    </p>
+                </div> --}}
+                <a href="https://docs.google.com/spreadsheets/d/10vzdEFArkBQJLs9DUaK7NkPE6bYVIO4ZooBOILR0Vhg/edit?usp=sharing" target="_blank"
+                    class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold py-2 px-4 rounded-xl text-sm transition-colors flex items-center gap-2 w-max">
+                    <i class="fas fa-external-link-alt"></i> Buka Template Spreadsheet
+                </a>
+
+                <div class="bg-blue-50 border border-blue-200 text-blue-800 rounded-lg p-4 text-sm max-w-2xl w-full">
+                    <p class="font-bold mb-2">
+                        <i class="fas fa-info-circle mr-1"></i> Cara Menggunakan Template:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-1 ml-1">
+                        <li>Klik tombol hijau di atas untuk membuka format template.</li>
+                        <li>Di Google Sheets, klik menu <b>File</b> lalu pilih <b>Buat Salinan (Make a copy)</b>.</li>
+                        <li>Isi data nasabah pada file salinan Anda (format angka akan otomatis aman).</li>
+                        <li>Jika sudah selesai, klik <b>File > Download > Microsoft Excel (.xlsx)</b>.</li>
+                        <li><b>Upload</b> file Excel hasil download tersebut ke form di bawah ini.</li>
+                    </ol>
                 </div>
 
-                <a href="{{ asset('templates/Template_Import_Gadai.xlsx') }}" download
-                   class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold py-2 px-4 rounded-xl text-sm transition-colors flex items-center gap-2">
-                    <i class="fas fa-download"></i> Download Template Excel
-                </a>
             </div>
-
             @if ($errors->any())
                 <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
                     <div class="flex">

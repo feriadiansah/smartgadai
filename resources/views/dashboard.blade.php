@@ -70,6 +70,16 @@
                         <option>📕 Kredit Bermasalah</option>
                     </select>
                     <!-- Tombol Pemicu Modal Antrean WA -->
+                    <form action="{{ route('pinjaman.hapus-massal') }}" method="POST" class="inline-block"
+                        onsubmit="return confirm('AWAS! Apakah Anda yakin ingin menghapus SEMUA data tagihan ini? Tindakan ini akan menyembunyikan data dari Dashboard.');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-4 py-2 rounded-xl font-semibold text-sm flex items-center gap-2 transition-colors shadow-sm">
+                            <i class="fas fa-trash-alt"></i> Kosongkan Data
+                        </button>
+                    </form>
+
                     <button @click="showModalWA = true"
                         class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-xl font-semibold text-sm flex items-center gap-2 transition-colors shadow-sm">
                         <i class="fab fa-whatsapp text-lg"></i> Kirim WA Massal ({{ count($dataReminder) }})
@@ -82,7 +92,7 @@
                     <thead class="bg-slate-50/50 text-slate-500 font-bold uppercase text-[11px]">
                         <tr>
                             <th class="px-6 py-4 border-b border-slate-100">Nasabah</th>
-                            <th class="px-6 py-4 border-b border-slate-100">No Kontrak</th>
+                            <th class="px-6 py-4 border-b border-slate-100">No Angsuran</th>
                             <th class="px-6 py-4 border-b border-slate-100">Kategori & Produk</th>
                             <th class="px-6 py-4 border-b border-slate-100">Tgl Jatuh Tempo</th>
                             <th class="px-6 py-4 border-b border-slate-100 text-right">Sisa Pinjaman</th>
@@ -175,7 +185,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-8 text-center text-slate-500">Belum ada data pinjaman.
+                                <td colspan="6" class="px-6 py-8 text-center text-slate-500">Belum ada data
+                                    pinjaman.
                                     Silakan upload Excel terlebih dahulu.</td>
                             </tr>
                         @endforelse

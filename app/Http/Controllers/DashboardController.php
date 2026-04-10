@@ -26,18 +26,18 @@ class DashboardController extends Controller
         $dataReminder = Pinjaman::with('nasabah')
             ->whereDate('tgl_jatuh_tempo', '<=', $batasWaktu) // Syarat 1: Jatuh tempo hari ini/lewat/besok
             ->whereIn('status_barang', ['Aktif', 'Menunggu']) // Syarat 2: Belum lunas
-            ->whereHas('nasabah', function($query) {
+            ->whereHas('nasabah', function ($query) {
                 $query->whereNotNull('nomor_hp')->where('nomor_hp', '!=', ''); // Syarat 3: Punya No HP
             })
             ->get();
 
         // 6. --- REFACTOR: Rakit Link WA di Controller ---
         // Kita tempelkan variabel baru bernama 'link_wa' ke data yang akan dikirim ke View
-        $dataPinjaman->each(function($item) {
+        $dataPinjaman->each(function ($item) {
             $item->link_wa = $this->generateWaLink($item);
         });
 
-        $dataReminder->each(function($item) {
+        $dataReminder->each(function ($item) {
             $item->link_wa = $this->generateWaLink($item);
         });
 
@@ -55,7 +55,7 @@ class DashboardController extends Controller
 
         // Bersihkan Nomor HP
         $noHp = preg_replace('/[^0-9]/', '', $noHp);
-        if(substr($noHp, 0, 1) == '0') {
+        if (substr($noHp, 0, 1) == '0') {
             $noHp = '62' . substr($noHp, 1);
         }
 
@@ -69,6 +69,11 @@ class DashboardController extends Controller
         $pesan .= "Info\nPEGADAIAN KEBAYORAN BARU";
 
         return "https://web.whatsapp.com/send?phone=" . $noHp . "&text=" . urlencode($pesan);
+    }
+    public function hapusMassal()
+    {
+        \App\Models\Pinjaman::query()->delete();
+        return redirect()->back()->with('success', 'Semua data pinjaman berhasil dikosongkan!');
     }
 }
 

@@ -21,14 +21,17 @@ class ImportController extends Controller
             'kategori' => 'required|string',
             'file_excel' => 'required|mimes:xlsx,xls,csv|max:10240', // Maks 10MB
         ], [
-            // Pesan error pakai bahasa Indonesia biar gampang dimengerti
             'file_excel.mimes' => 'File harus berupa Excel (.xlsx atau .xls)',
             'file_excel.max' => 'Ukuran file tidak boleh lebih dari 10 MB',
         ]);
 
         try {
             Excel::import(new PinjamanImport($request->kategori), $request->file('file_excel'));
-            return redirect()->back()->with('success', 'Data berhasil diimport');
+
+            // ---> GANTI BARIS INI <---
+            // Asalnya: return redirect()->back()->with('success', 'Data berhasil diimport');
+            // Menjadi:
+            return redirect()->route('dashboard')->with('success', 'Data Nasabah & Pinjaman berhasil diimpor!');
         } catch (\Exception $e) {
             // TAMPILKAN ERROR ASLINYA KE LAYAR
             dd($e->getMessage());

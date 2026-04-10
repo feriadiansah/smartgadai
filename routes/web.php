@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/import', [ImportController::class, 'store'])->name('import.store');
 
     Route::patch('/pinjaman/{id}/status', [PinjamanController::class, 'updateStatus'])->name('pinjaman.update-status');
+    Route::delete('/pinjaman/hapus-massal', [App\Http\Controllers\DashboardController::class, 'hapusMassal'])->name('pinjaman.hapus-massal');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
