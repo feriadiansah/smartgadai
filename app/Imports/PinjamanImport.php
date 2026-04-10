@@ -71,7 +71,6 @@ class PinjamanImport implements ToModel, WithHeadingRow
             'produk'             => $row['nama_produk'],
             'sisa_uang_pinjaman' => $row['sisa_pinjaman'],
             'tgl_jatuh_tempo'    => $tanggalJatuhTempo, // Memakai tanggal hasil olahan tahap 3
-            'kategori_produk'    => $this->kategori,
             'status_barang'      => 'Aktif'
         ]);
     }

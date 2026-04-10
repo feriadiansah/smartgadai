@@ -13,11 +13,11 @@
                     <p class="text-slate-500 text-sm mt-1">Gunakan template resmi agar valid untuk upload.
                     </p>
                 </div> --}}
-                <a href="https://docs.google.com/spreadsheets/d/10vzdEFArkBQJLs9DUaK7NkPE6bYVIO4ZooBOILR0Vhg/edit?usp=sharing" target="_blank"
+                <a href="https://docs.google.com/spreadsheets/d/10vzdEFArkBQJLs9DUaK7NkPE6bYVIO4ZooBOILR0Vhg/edit?usp=sharing"
+                    target="_blank"
                     class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold py-2 px-4 rounded-xl text-sm transition-colors flex items-center gap-2 w-max">
                     <i class="fas fa-external-link-alt"></i> Buka Template Spreadsheet
                 </a>
-
                 <div class="bg-blue-50 border border-blue-200 text-blue-800 rounded-lg p-4 text-sm max-w-2xl w-full">
                     <p class="font-bold mb-2">
                         <i class="fas fa-info-circle mr-1"></i> Cara Menggunakan Template:
@@ -52,21 +52,10 @@
                 id="upload-form">
                 @csrf
 
-                <!-- Pilih Kategori -->
-                <div>
-                    <label for="kategori" class="block text-sm font-bold text-[#1b2559] mb-2">1. Pilih Kategori Data
-                        <span class="text-red-500">*</span></label>
-                    <select name="kategori" id="kategori" required
-                        class="w-full border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-indigo-500 bg-slate-50 py-3 text-slate-700">
-                        <option value="" disabled selected>-- Pilih Kategori --</option>
-                        <option value="Angsuran Rutin">📘 Angsuran Rutin (Normal)</option>
-                        <option value="Lelang">📕 Kredit Bermasalah (Lelang / Macet)</option>
-                    </select>
-                </div>
 
                 <!-- Input File Area dengan ID dropzone -->
                 <div>
-                    <label class="block text-sm font-bold text-[#1b2559] mb-2">2. Pilih File Excel (.xlsx) <span
+                    <label class="block text-sm font-bold text-[#1b2559] mb-2">Pilih File Excel (.xlsx) <span
                             class="text-red-500">*</span></label>
 
                     <div id="dropzone"

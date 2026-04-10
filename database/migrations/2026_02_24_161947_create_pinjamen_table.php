@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('nasabah_id')->constrained('nasabahs')->cascadeOnDelete();
             $table->string('no_angsuran');
-            $table->string('kategori_produk');
-            $table->string('produk')->nullable();
+            $table->string('produk');
 
             // PASTIKAN KOLOM INI ADA DAN NAMANYA BENAR
             $table->date('tgl_jatuh_tempo')->nullable();
