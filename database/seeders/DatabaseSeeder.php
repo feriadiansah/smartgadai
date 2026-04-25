@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'admin gadai',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin123'), // Password disandikan (Hashed)
+            'password' => Hash::make('gadai123'), // Password disandikan (Hashed)
         ]);
     }
 }

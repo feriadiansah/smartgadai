@@ -16,21 +16,30 @@ class ImportController extends Controller
     // Fungsi store() biarkan kosong dulu, nanti untuk memproses Excel-nya
     public function store(Request $request)
     {
-        // 1. MANDOR MENGECEK BARANG BAWAAN (Validasi)
+        // 1. MANDOR DASAR: Cuma cek apakah ada file & ukurannya maksimal 10MB
+        // (Kita buang aturan 'mimes' dari sini!)
         $request->validate([
-            'kategori' => 'required|string',
-            'file_excel' => 'required|mimes:xlsx,xls,csv|max:10240', // Maks 10MB
+            'file_excel' => 'required|file|max:10240',
         ], [
-            'file_excel.mimes' => 'File harus berupa Excel (.xlsx atau .xls)',
-            'file_excel.max' => 'Ukuran file tidak boleh lebih dari 10 MB',
+            'file_excel.required' => 'File tidak boleh kosong!',
+            'file_excel.max'      => 'Ukuran file tidak boleh lebih dari 10 MB',
         ]);
 
-        try {
-            Excel::import(new PinjamanImport($request->kategori), $request->file('file_excel'));
+        // 2. PENGECEKAN MANUAL (JURUS BYPASS OS LAPTOP)
+        // Kita ambil ekstensi murni dari nama filenya (misal dari "template.xlsx" diambil "xlsx"-nya)
+        $file = $request->file('file_excel');
+        $ekstensi = strtolower($file->getClientOriginalExtension());
 
-            // ---> GANTI BARIS INI <---
-            // Asalnya: return redirect()->back()->with('success', 'Data berhasil diimport');
-            // Menjadi:
+        // Cek apakah ekstensinya ada di daftar yang kita izinkan
+        if (!in_array($ekstensi, ['xlsx', 'xls', 'csv'])) {
+            // Kalau bukan, tendang balik ke halaman sebelumnya dengan pesan error merah!
+            return back()->withErrors(['file_excel' => 'File harus berupa Excel (.xlsx atau .xls)']);
+        }
+
+        // 3. PROSES IMPORT JIKA EKSTENSI AMAN
+        try {
+            Excel::import(new PinjamanImport(), $file);
+
             return redirect()->route('dashboard')->with('success', 'Data Nasabah & Pinjaman berhasil diimpor!');
         } catch (\Exception $e) {
             // TAMPILKAN ERROR ASLINYA KE LAYAR

@@ -62,7 +62,7 @@ class DashboardController extends Controller
         // Format Pesan Pegadaian
         $pesan = "Yth Bpk/Ibu " . strtoupper($pinjaman->nasabah->nama_lengkap) . "\n\n";
         $pesan .= "Angsuran Kredit Produk " . $pinjaman->produk . "\n";
-        $pesan .= "No Angsuran; " . $pinjaman->no_angsuran . "\n";
+        $pesan .= "No kredit; " . $pinjaman->no_angsuran . "\n";
         $pesan .= "Akan Jatuh Tempo Tanggal: " . Carbon::parse($pinjaman->tgl_jatuh_tempo)->translatedFormat('d M Y') . "\n\n";
         $pesan .= "Abaikan pesan ini jika sudah melakukan pembayaran\n\n";
         $pesan .= "Transaksi Semakin Mudah; https://tring.onelink.me/rIEN/infoPegadaian\n\n";

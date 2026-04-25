@@ -40,7 +40,7 @@
         </div>
 
         <p class="mt-8 text-emerald-100 text-xs z-10 font-medium">
-            &copy; {{ date('Y') }} Sistem Informasi Gadai BUMN
+            &copy; {{ date('Y') }} cabang Kebayoran Lama
         </p>
     </div>
 </body>
